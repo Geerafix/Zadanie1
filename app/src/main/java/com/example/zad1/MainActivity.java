@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.q5, true),
             new Question(R.string.q6, false)
     };
-    private int currentIndex = 0;
+    private int currentIndex = 0, correctAnswers = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +69,14 @@ public class MainActivity extends AppCompatActivity {
         int resultMessageId = 0;
         if (userAnswer == correctAnswer) {
             resultMessageId = R.string.correct_answer;
+            correctAnswers++;
         } else {
             resultMessageId = R.string.incorrect_answer;
         }
         Toast.makeText(this, resultMessageId, Toast.LENGTH_SHORT).show();
+        if (currentIndex == 5) {
+            Toast.makeText(this, "Liczba poprawnych odpowiedzi: " + correctAnswers, Toast.LENGTH_SHORT).show();
+            correctAnswers = 0;
+        }
     }
 }
